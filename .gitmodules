@@ -1,0 +1,12 @@
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:WesleyMPG/final-frontend.git
+[submodule "backend"]
+	path = backend
+	url = git@github.com:WesleyMPG/final-backend.git
+[submodule "docker-backend/backend"]
+	path = docker-backend/backend
+	url = git@github.com:WesleyMPG/final-backend.git
+[submodule "docker-frontend/frontend"]
+	path = docker-frontend/frontend
+	url = git@github.com:WesleyMPG/final-frontend.git

@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: sume_db
+    image: postgres:14.1-alpine
+    restart: on-failure
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=sume_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=senha
+
+  back:
+    container_name: sume_backend
+    image: wesleympg/curso-lccv:back
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_NAME=sume_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=senha
+    depends_on:
+      - db
+
+  front:
+    container_name: sume_frontend
+    image: wesleympg/curso-lccv:front
+    command: npm run start
+    ports:
+      - "4200:4200"
+    depends_on:
+      - db
+      - back
